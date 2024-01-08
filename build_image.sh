@@ -13,7 +13,7 @@ TOTALSIZE=$(( $(sudo du -ms /opt/multistrap/ | cut -f 1) - $(sudo du -ms /opt/mu
 # create blank sd card image
 sudo dd if=/dev/zero of=$IMAGE bs=1M count=$TOTALSIZE
 
-# Create partitions
+# Create partitions   
 sudo fdisk $IMAGE <<EOF
 n
 p
