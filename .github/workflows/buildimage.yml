@@ -15,7 +15,13 @@ defaults:
 jobs:
   build:
     name: Mahalia Image Job
-    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-20.04
+    runs-on: # Source - https://stackoverflow.com/a
+# Posted by Chris Stryczynski
+# Retrieved 2025-11-06, License - CC BY-SA 4.0
+
+runs-on: ${{ fromJSON('["ubuntu-latest", "self-hosted"]')[github.repository == 'github/docs-internal'] }}
+ 
     strategy:
       fail-fast: false
     
