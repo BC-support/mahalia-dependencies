@@ -25,9 +25,9 @@ if [ "$1" = 'configure' ]; then
 	#deb-systemd-invoke start dnsmasq
 
 	# Make sure hostapd doesn't run for STA configuration 
-	systemctl stop hostapd.service 2>/dev/null
-	systemctl disable hostapd.service 2>/dev/null
-	systemctl mask hostapd
+	# systemctl stop hostapd.service 2>/dev/null
+	# systemctl disable hostapd.service 2>/dev/null
+	# systemctl mask hostapd
 	#deb-systemd-invoke enable hostapd
 	#deb-systemd-invoke start hostapd
 
