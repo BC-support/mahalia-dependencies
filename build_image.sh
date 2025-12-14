@@ -51,6 +51,23 @@ sudo mount "/dev/mapper/$DEVICE"p1 /mahalia/boot
 sudo mkdir -p /mahalia/configuration
 sudo mount "/dev/mapper/$DEVICE"p3 /mahalia/configuration
 
+# Disable hostapd
+# ---- Ensure STA mode: prevent hostapd (AP mode) from starting ----
+ROOTFS=/opt/multistrap
+
+# Disable hostapd by removing enable symlink (if present)
+sudo rm -f "$ROOTFS/etc/systemd/system/multi-user.target.wants/hostapd.service"
+
+# Mask hostapd so it can never start even if something enables it later
+sudo mkdir -p "$ROOTFS/etc/systemd/system"
+sudo ln -sf /dev/null "$ROOTFS/etc/systemd/system/hostapd.service"
+
+# (Optional) do the same for dnsmasq if you don't want DHCP/DNS server
+sudo rm -f "$ROOTFS/etc/systemd/system/multi-user.target.wants/dnsmasq.service"
+sudo ln -sf /dev/null "$ROOTFS/etc/systemd/system/dnsmasq.service"
+# ---------------------------------------------------------------
+
+
 # Copy content and unmount 
 sudo rsync -a /opt/multistrap/ /mahalia/ || true
 sudo umount "/dev/mapper/$DEVICE"p1
