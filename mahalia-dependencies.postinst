@@ -18,15 +18,17 @@ if [ "$1" = 'configure' ]; then
 	chown -R mha:mha /etc/mahalia_generic-hearing-aid_calibration
 	chown -R mha:mha /etc/mahalia_fitpod
 	
-	# setup dnsmasq & hostapd
+	# setup dnsmasq 
 	echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" > /etc/default/hostapd
 
 	deb-systemd-invoke enable dnsmasq
 	#deb-systemd-invoke start dnsmasq
 
-	# hostapd is masked by default
-	systemctl unmask hostapd
-	deb-systemd-invoke enable hostapd
+	# Make sure hostapd doesn't run for STA configuration 
+	systemctl stop hostapd.service 2>/dev/null
+	systemctl disable hostapd.service 2>/dev/null
+	systemctl mask hostapd
+	#deb-systemd-invoke enable hostapd
 	#deb-systemd-invoke start hostapd
 
 	# Install and start daemon
