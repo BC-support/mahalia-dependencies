@@ -19,9 +19,9 @@ if [ "$1" = 'configure' ]; then
 	chown -R mha:mha /etc/mahalia_fitpod
 	
 	# setup dnsmasq 
-	echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" > /etc/default/hostapd
+	#echo "DAEMON_CONF=\"/etc/hostapd/hostapd.conf\"" > /etc/default/hostapd
 
-	deb-systemd-invoke enable dnsmasq
+	#deb-systemd-invoke enable dnsmasq
 	#deb-systemd-invoke start dnsmasq
 
 	# Make sure hostapd doesn't run for STA configuration 
