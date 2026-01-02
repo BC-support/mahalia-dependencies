@@ -5,9 +5,9 @@
 
 auto wlan0
 iface wlan0 inet static
-  address 192.168.0.25
+  address 192.168.1.25
   netmask 255.255.255.0
-  gateway 192.168.0.1 
+  gateway 192.168.1.1 
   dns-nameservers 8.8.8.8 8.8.4.4 
   wpa-ssid Headwaters 
   wpa-psk PH2ADRD2025! 
